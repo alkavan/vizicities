@@ -26,6 +26,8 @@
 				pos2dDelta: new THREE.Vector2(),
 				pos3dDelta: new THREE.Vector3(),
 				wheelDelta: 0,
+				// My mouse delta is 3/-3, not sure if this is for everyone
+				wheelDeltaFactor: 1 /*45*/,
 				camera: {
 					startTheta: this.camera.theta,
 					startPhi: this.camera.phi
@@ -152,8 +154,8 @@
 			event.preventDefault();
 
 			var state = this.state;
-			
-			state.wheelDelta -= event.deltaY;
+
+			state.wheelDelta -= event.deltaY*state.wheelDeltaFactor;
 		};
 
 		Mouse.prototype.resetDelta = function() {
