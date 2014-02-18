@@ -1,4 +1,4 @@
-/* globals window, _, VIZI, THREE, Physijs */
+/* globals window, _, VIZI, THREE, Physijs, Ammo */
 (function() {
 	"use strict";
 
@@ -15,12 +15,12 @@
 	VIZI.PhysicsCube.prototype.createObject = function() {
 
 		var settings = {
-			position: new THREE.Vector3(0, 0, 0),
-			mass: (2 * 2 * 2),
+			position: new THREE.Vector3( (Math.random() * 1500 - 500), 300, (Math.random() * 3000 - 800) ),
+			mass: (5 * 5 * 5),
 			width:  100,
 			height: 100,
 			depth:  100,
-			color:  0xffff00
+			color:  0xff0000
 		};
 
 		var mesh, startTransform, localInertia, boxShape, motionState, rbInfo, boxAmmo;
@@ -32,6 +32,7 @@
 		});
 
 		mesh = new Physijs.BoxMesh(geometry, material);
+		mesh.material.color.setRGB( Math.random() * 100 / 100, Math.random() * 100 / 100, Math.random() * 100 / 100 );
 
 		// Create box physics model
 		startTransform = new Ammo.btTransform();
@@ -46,6 +47,8 @@
 		motionState = new Ammo.btDefaultMotionState( startTransform );
 		rbInfo      = new Ammo.btRigidBodyConstructionInfo( settings.mass, motionState, boxShape, localInertia );
 		boxAmmo     = new Ammo.btRigidBody( rbInfo );
+
+		mesh.position = settings.position;
 
 		boxAmmo.mesh = mesh;
 

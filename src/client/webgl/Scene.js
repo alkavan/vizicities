@@ -1,3 +1,4 @@
+/* globals window, _, VIZI, THREE, Physijs, Ammo */
 (function() {
 	"use strict";
 
