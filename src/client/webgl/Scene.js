@@ -15,6 +15,12 @@
 			VIZI.Log(object);
 			this.addToScene(object);
 		});
+
+		this.subscribe("addPhysicsToScene", function(object) {
+			VIZI.Log("Scene add physics object handler");
+			VIZI.Log(object);
+			this.addPhysicsToScene(object);
+		});
 	};
 
 	VIZI.Scene.prototype.createScene = function() {
@@ -40,7 +46,7 @@
 			VIZI.ammo.solver,
 			VIZI.ammo.collisionConfiguration
 		);
-		scene.world.setGravity(new Ammo.btVector3(0, -6, 0));
+		scene.world.setGravity(new Ammo.btVector3(0, -9.81, 0));
 
 		return scene;
 	};
@@ -48,5 +54,11 @@
 	VIZI.Scene.prototype.addToScene = function(object) {
 		this.scene.add(object);
 		this.objects.push(object);
+	};
+
+	VIZI.Scene.prototype.addPhysicsToScene = function(object) {
+		this.scene.world.addRigidBody(object);
+		this.scene.add(object.mesh);
+		this.objects.push(object.mesh);
 	};
 }());

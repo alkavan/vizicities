@@ -40,7 +40,7 @@
 
 		localInertia = new Ammo.btVector3(0, 0, 0);
 
-		boxShape = new Ammo.btBoxShape(new Ammo.btVector3( settings.width+5, settings.height+5, settings.depth+5 ));
+		boxShape = new Ammo.btBoxShape(new Ammo.btVector3( settings.width+3, settings.height+3, settings.depth+3 ));
 		boxShape.calculateLocalInertia( settings.mass, localInertia );
 
 		motionState = new Ammo.btDefaultMotionState( startTransform );
@@ -49,8 +49,7 @@
 
 		boxAmmo.mesh = mesh;
 
-		this.publish("addToScene", boxAmmo.mesh);
-		console.log(boxAmmo);
+		this.publish("addPhysicsToScene", boxAmmo);
 		return boxAmmo;
 	};
 }());
