@@ -27,8 +27,8 @@
 	VIZI.Scene.prototype.createScene = function() {
 		VIZI.Log("Creating WebGL scene");
 
-		var scene = (typeof Physijs !== "undefined")
-			? new Physijs.Scene() : new THREE.Scene();
+		var scene = (typeof Physijs !== "undefined") ?
+				new Physijs.Scene() : new THREE.Scene();
 
 		scene.fog = new THREE.Fog(0xffffff, 1, 40000);
 
