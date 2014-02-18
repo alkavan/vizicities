@@ -42,9 +42,13 @@
 
 	VIZI.Renderer.prototype.render = function() {
 		this.publish("fpsTickStart", "render");
+
+		if (typeof Physijs !== "undefined") {
+			this.scene.world.stepSimulation( 1 / 60, 5 );
+			this.scene.simulate();
+		}
+
 		// Render scene
-		this.scene.world.stepSimulation( 1 / 60, 5 );
-		this.scene.simulate();
 		this.renderer.render( this.scene, this.camera );
 		this.publish("updateRendererInfo", this.renderer.info);
 		this.publish("fpsTickEnd", "render");
