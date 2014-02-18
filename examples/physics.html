@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>ViziCities Architecture Physics Example</title>
+
+	<link href="../reset.css" rel="stylesheet" type="text/css">
+
+	<link href="../../css/loading.css" rel="stylesheet" type="text/css">
+	
+	<style type="text/css">
+		html, body {
+			height: 100%;
+			overflow: hidden;
+		}
+
+		body {
+			background: #ccc;
+		}
+	</style>
+</head>
+<body>
+
+	<script src="lib/ammo.fast.js"></script>
+	<script src="../../build/vizi.js"></script>
+	<script src="lib/physi.js"></script>
+	<script src="lib/physijs_worker.js"></script>
+
+	<script>
+		// Debug output
+		VIZI.DEBUG = true;
+
+		Physijs.scripts.worker = '/examples/lib/physijs_worker.js';
+		Physijs.scripts.ammo = '/examples/lib/ammo.fast.js';
+
+		var city = new VIZI.City();
+		city.init({
+//			coords: [-0.01924, 51.50358] // Canary Wharf
+			coords: [-0.1159894466, 51.5045487479] // London Eye
+			// coords: [-73.984762, 40.7516199] // NYC (performance-heavy)
+		});
+
+		setInterval(function () {
+			var p_cube = new VIZI.PhysicsCube();
+		}, 75);
+	</script>
+
+</body>
+</html>

@@ -42,6 +42,8 @@
 
 	VIZI.Renderer.prototype.render = function() {
 		this.publish("fpsTickStart", "render");
+			// Render scene
+		this.scene.simulate();
 		this.renderer.render( this.scene, this.camera );
 		this.publish("updateRendererInfo", this.renderer.info);
 		this.publish("fpsTickEnd", "render");
