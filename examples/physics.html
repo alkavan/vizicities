@@ -21,17 +21,15 @@
 </head>
 <body>
 
-	<script src="lib/ammo.fast.js"></script>
+	<script src="../../build/ammo.fast.js"></script>
 	<script src="../../build/vizi.js"></script>
-	<script src="lib/physi.js"></script>
-	<script src="lib/physijs_worker.js"></script>
 
 	<script>
 		// Debug output
 		VIZI.DEBUG = false;
 
-		Physijs.scripts.worker = '/examples/lib/physijs_worker.js';
-		Physijs.scripts.ammo = '/examples/lib/ammo.fast.js';
+		Physijs.scripts.worker = '/build/physijs_worker.js';
+		Physijs.scripts.ammo   = '/build/ammo.fast.js';
 
 		var city = new VIZI.City();
 		city.init({

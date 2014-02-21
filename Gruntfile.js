@@ -24,6 +24,7 @@ module.exports = function(grunt) {
 					'src/shared/vendor/underscore.js',
 					'src/shared/vendor/q.js',
 					'src/shared/vendor/three/three.js',
+					'src/shared/vendor/physics/physi.js',
 					'src/shared/vendor/three/ColorConverter.js',
 					'src/shared/vendor/d3.js',
 					'src/shared/vendor/catiline.js',
@@ -63,6 +64,22 @@ module.exports = function(grunt) {
 				dest: 'build/vizi.js'
 			}
 		},
+
+		copy: {
+			ammo: {
+				files: [
+					{
+						src: 'src/shared/vendor/physics/physijs_worker.js',
+						dest: 'build/physijs_worker.js'
+					},
+					{
+						src: 'src/shared/vendor/physics/ammo.fast.js',
+						dest: 'build/ammo.fast.js'
+					}
+				]
+			}
+		},
+
 		jshint: {
 			options: {
 				force: true,
@@ -135,6 +152,7 @@ module.exports = function(grunt) {
 	// Load the plugins
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-connect');
@@ -143,7 +161,7 @@ module.exports = function(grunt) {
 
 	// Default task(s).
 	// grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'notify:finish']);
-	grunt.registerTask('default', ['jshint', 'concat', 'notify:finish']);
+	grunt.registerTask('default', ['jshint', 'concat', 'copy', 'notify:finish']);
 
 	// Serve examples locally
 	grunt.registerTask('serve', ['connect']);
